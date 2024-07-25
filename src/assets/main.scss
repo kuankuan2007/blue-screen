@@ -1,14 +1,21 @@
-#app{
-    position: fixed;
-    inset: 0;
-    background-color: #a1a1ff;
 
-}
 body,html{
     margin: 0;
     padding: 0;
 }
 *{
     font-family: 'Microsoft YaHei', Arial, Helvetica, sans-serif;
-    color: #fff;
 }
+
+@font-face {
+    font-family: fontello;
+    src: url('./fontello/fontello/font/fontello.eot?90734603');
+    src:
+      url('./fontello/fontello/font/fontello.eot?90734603#iefix') format('embedded-opentype'),
+      url('./fontello/font/fontello.woff2?90734603') format('woff2'),
+      url('./fontello/font/fontello.woff?90734603') format('woff'),
+      url('./fontello/font/fontello.ttf?90734603') format('truetype'),
+      url('./fontello/font/fontello.svg?90734603#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
