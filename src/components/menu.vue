@@ -16,7 +16,7 @@
               <p class="icon"><k-icon id="eye-off" /></p>
               <p class="text">隐藏多余项</p>
             </li>
-            <li @click="(hideMenu = true), (flodMenu = true)">
+            <li @click="screenCapture">
               <p class="icon"><k-icon id="scissors" /></p>
               <p class="text">截图</p>
             </li>
@@ -48,7 +48,50 @@ import { watchEffect } from 'vue';
 import KIcon from './icon.vue';
 import { ref } from 'vue';
 import KColorSetDialog from './colorSetDialog.vue';
-
+function screenCapture() {
+  hideMenu.value = true;
+  flodMenu.value = true;
+  setTimeout(async () => {
+    const stream = await navigator.mediaDevices.getDisplayMedia({
+      audio: false,
+      video: screen,
+    });
+    const video = document.createElement('video');
+    video.srcObject = stream;
+    setTimeout(() => {
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas
+        .getContext('2d')
+        ?.drawImage(
+          video,
+          0,
+          0,
+          video.videoWidth,
+          video.videoHeight,
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+      setTimeout(() => {
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            return;
+          }
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'screenshot.png';
+          a.click();
+          URL.revokeObjectURL(url);
+          stream.getTracks().forEach((track) => track.stop());
+        });
+      }, 200);
+    }, 200);
+  }, 300);
+}
 defineProps({
   color: {
     type: String,

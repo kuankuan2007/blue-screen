@@ -1,5 +1,5 @@
 <template>
-  <div>{{ String.fromCharCode(fontelloData[id]) }}</div>
+  <div class="icon">{{ String.fromCharCode(fontelloData[id]) }}</div>
 </template>
 <script setup lang="ts">
 import fontelloData from '../assets/fontello/data';
