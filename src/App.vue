@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-  <k-menu v-model="pageData.bg" :color="fontColor.hex()"/>
+  <k-menu v-model="pageData.bg" :color="fontColor.hex()" :data="pageData"/>
 </template>
 <script setup lang="ts">
 import { watchEffect, ref, reactive, computed } from 'vue';
@@ -31,6 +31,10 @@ import KCanEdit from './components/canEdit.vue';
 import Color from 'color';
 import KMultiLineText from './components/multiLineText.vue';
 import KMenu from './components/menu.vue';
+let searchData:object={};
+try{
+ searchData=JSON.parse(atob(new URL(location.href).searchParams.get('d')||''))
+}catch{}
 const pageData = reactive({
   tip: "Your PC ran into a problem and needs to restart.\nWe're just collecting some error info, then we'll restart for you.",
   complete: '24% complete',
@@ -38,6 +42,7 @@ const pageData = reactive({
   bg: '#0177d7',
   connectInfo:
     'For more information ablout this issue and possible fixes, visit https://kuankuan.site/\n\n\nIf you call a support person, give them this info:\nStop code: KFC_ERROR',
+  ...searchData
 });
 const qrcodeData = ref('');
 const bgColor = computed(() => {

@@ -20,7 +20,7 @@
               <p class="icon"><k-icon id="scissors" /></p>
               <p class="text">截图</p>
             </li>
-            <li @click="(hideMenu = true), (flodMenu = true)">
+            <li @click="shareUrl">
               <p class="icon"><k-icon id="share" /></p>
               <p class="text">分享带有页面内容的链接</p>
             </li>
@@ -54,10 +54,14 @@ function screenCapture() {
   setTimeout(async () => {
     const stream = await navigator.mediaDevices.getDisplayMedia({
       audio: false,
-      video: screen,
-    });
+      video: {
+        cursor: 'none',
+        displaySurface: 'browser',
+      },
+    } as object);
     const video = document.createElement('video');
     video.srcObject = stream;
+    video.play();
     setTimeout(() => {
       const canvas = document.createElement('canvas');
       canvas.width = video.videoWidth;
@@ -92,12 +96,27 @@ function screenCapture() {
     }, 200);
   }, 300);
 }
-defineProps({
+const props = defineProps({
   color: {
     type: String,
     required: true,
   },
+  data: {
+    type: Object,
+    required: true,
+  },
 });
+function shareUrl() {
+  const s = encodeURI(btoa(JSON.stringify(props.data)));
+  const now = new URL(location.href);
+  now.search = `d=${s}`;
+  const input = document.createElement('input');
+  input.value = now.toString();
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  alert('已复制到剪贴板');
+}
 const colorSetDialog = ref<InstanceType<typeof KColorSetDialog>>();
 const bg = defineModel({
   type: String,
