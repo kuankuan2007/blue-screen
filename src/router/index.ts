@@ -21,6 +21,7 @@ export const routes: RouteRecordRaw[] = [
     component: StyleWindows7,
     meta: { title: 'Windows 7', isStyleView: true },
   },
+  { path: '/:pathMatch(.*)*', redirect: '/' },
 ];
 export const router = createRouter({
   history: createWebHistory(),

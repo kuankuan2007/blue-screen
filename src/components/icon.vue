@@ -11,9 +11,9 @@ defineProps({
 });
 </script>
 <style scoped lang="scss">
-@import '../assets/fontello/fontello.scss';
+@use '../assets/fontello/fontello.scss';
 * {
-  @include fontello;
+  @include fontello.fontello;
   user-select: none;
   display: block;
   width: 1em;
