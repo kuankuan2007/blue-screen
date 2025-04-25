@@ -15,8 +15,12 @@
   },
   "dependencies": {
     "color": "^4.2.3",
+    "lz-string": "^1.5.0",
     "qrcode": "^1.5.3",
-    "vue": "^3.4.29"
+    "unplugin-auto-import": "^19.1.2",
+    "vite-plugin-vue-devtools": "^7.7.5",
+    "vue": "^3.4.29",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@kuankuan/eslint-2024": "^1.0.3",

@@ -2,116 +2,98 @@
   <div
     class="screen"
     :style="{
-      '--bg': bgColor.hex(),
-      '--font-color': fontColor.hex(),
+      '--bg': bgColor,
+      '--font-color': fontColor,
     }"
   >
-    <div class="top">
-      <p class="cry">:(</p>
-      <k-multi-line-text class="tip" v-model="pageData.tip" />
-      <p class="complete">
-        <k-can-edit v-model="pageData.complete" />
-        <div>{{ pageData.complete }}</div>
-      </p>
-      <div class="more-info">
-      <div class="qrcode">
-        <k-can-edit v-model="pageData.qrCode" />
-        <img :src="qrcodeData" alt="qrcode" />
-      </div>
-        <k-multi-line-text class="connetc-info" v-model="pageData.connectInfo" />
-      </div>
-    </div>
+    <router-view
+      :bg-color="bgColor"
+      :font-color="fontColor"
+      ref="mainBox"
+      :page-data-from-url="pageDataFromUrl"
+    />
   </div>
-  <k-menu v-model="pageData.bg" :color="fontColor.hex()" :data="pageData"/>
+  <k-menu
+    v-model:bg-color="bgColor"
+    v-model:font-color="fontColor"
+    :auto-font-color="autoFontColor"
+    @copy-link="copyLinks"
+  />
 </template>
 <script setup lang="ts">
-import { watchEffect, ref, reactive, computed } from 'vue';
-import QRCode from 'qrcode';
-import KCanEdit from './components/canEdit.vue';
+import { RouterView } from 'vue-router';
 import Color from 'color';
-import KMultiLineText from './components/multiLineText.vue';
 import KMenu from './components/menu.vue';
-let searchData:object={};
-try{
- searchData=JSON.parse(atob(new URL(location.href).searchParams.get('d')||''))
-}catch{}
-const pageData = reactive({
-  tip: "Your PC ran into a problem and needs to restart.\nWe're just collecting some error info, then we'll restart for you.",
-  complete: '24% complete',
-  qrCode: 'https://kuankuan.site/',
-  bg: '#0177d7',
-  connectInfo:
-    'For more information ablout this issue and possible fixes, visit https://kuankuan.site/\n\n\nIf you call a support person, give them this info:\nStop code: KFC_ERROR',
-  ...searchData
-});
-const qrcodeData = ref('');
-const bgColor = computed(() => {
-  return Color(pageData.bg);
-});
-const fontColor = computed(() => {
-  return bgColor.value.isDark() ? Color('#fff') : Color('#000');
-});
-watchEffect(async () => {
-  qrcodeData.value = await QRCode.toDataURL(pageData.qrCode, {
-    margin: 1,
-    color: {
-      light: fontColor.value.hex(),
-      dark: bgColor.value.hex(),
-    },
-  });
-});
-</script>
-<style scoped lang="scss">
-.top {
-  padding: 10em;
-  font-size: min(1.8vw, 1.8vh);
-  .cry {
-    margin: 0;
-    font-size: min(20vh, 16vw);
-  }
+import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
+import { getVisibleColor } from './scripts/uitl';
+import { router } from './router';
 
-  .tip {
-    font-size: min(1.8em, 9vw);
-    margin: 0;
-    margin-top: 3vh;
-    max-width: max(50vw, 28em);
-    :deep(p) {
-      margin: 0;
-    }
-  }
+const bgColor = ref('#0177d7');
+const fontColor = ref('#ffffff');
+const autoFontColor = ref(true);
+const pageDataFromUrl = ref('');
 
-  .complete {
-    font-size: min(1.5em, 7.5vw);
-    margin-top: 1em;
-    position: relative;
+router.afterEach((to, from) => {
+  decodeUrl();
+});
+
+function decodeUrl() {
+  const nowUrl = new URL(window.location.href);
+  if (nowUrl.searchParams.get('b')) {
+    const oldValue = bgColor.value;
+    try {
+      bgColor.value = `${nowUrl.searchParams.get('b')}`;
+    } catch {
+      bgColor.value = oldValue;
+    }
   }
-  .more-info {
-    display: flex;
-    justify-content: start;
-    align-items: stretch;
-    column-gap: 1.5em;
-    .qrcode {
-      width: 10em;
-      height: 10em;
-      position: relative;
-      flex: auto 0 0;
-      img{
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
+  if (nowUrl.searchParams.get('f')) {
+    const oldValue = fontColor.value;
+    try {
+      fontColor.value = `${nowUrl.searchParams.get('f')}`;
+    } catch {
+      fontColor.value = oldValue;
     }
-    .connetc-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      &:deep(p) {
-        margin: 0;
-        font-size: min(1.2em, 5vw);
-      }
+  }
+  if (nowUrl.searchParams.get('a')) {
+    try {
+      autoFontColor.value = `${nowUrl.searchParams.get('a')}` === 'true';
+    } catch {
+      autoFontColor.value = true;
     }
+  }
+  if (nowUrl.searchParams.get('d')) {
+    try {
+      pageDataFromUrl.value = decompressFromEncodedURIComponent(nowUrl.searchParams.get('d') || '');
+    } catch {
+      pageDataFromUrl.value = '';
+    }
+  } else {
+    pageDataFromUrl.value = '';
   }
 }
+onMounted(() => {
+  decodeUrl();
+});
+function copyLinks() {
+  const target = new URL(window.location.href);
+
+  if (fontColor.value === getVisibleColor(bgColor.value).hex()) {
+    target.searchParams.set('a', 'true');
+  } else {
+    target.searchParams.set('a', 'false');
+    target.searchParams.set('f', encodeURI(Color(fontColor.value).hex()));
+  }
+  target.searchParams.set('b', encodeURI(Color(bgColor.value).hex()));
+  target.searchParams.set(
+    'd',
+    // @ts-ignore
+    compressToEncodedURIComponent(JSON.stringify(window.pageData || {}))
+  );
+  navigator.clipboard.writeText(target.href);
+}
+</script>
+<style scoped lang="scss">
 .screen {
   display: flex;
   justify-content: center;
@@ -119,7 +101,8 @@ watchEffect(async () => {
   position: fixed;
   inset: 0;
   background-color: var(--bg);
-  &:deep(*),.menu-box:deep(*) {
+  &:deep(*),
+  .menu-box:deep(*) {
     color: var(--font-color);
   }
 }

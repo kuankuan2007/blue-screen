@@ -10,19 +10,26 @@
     class="menu"
     :class="{
       'hide-menu': hideMenu,
+      [`at-${props.buttonAt}`]: true,
     }"
     @click="onEdit = !onEdit"
   >
     <k-icon :id="onEdit ? 'save' : 'edit'" />
   </div>
 </template>
-<script setup lang="ts">
-import { ref } from 'vue';
-import KIcon from './icon.vue';
+<script setup lang="ts">import KIcon from './icon.vue';
 const value = defineModel({
   required: true,
   type: String,
 });
+const props = withDefaults(
+  defineProps<{
+    buttonAt?: 'top-right' | 'right';
+  }>(),
+  {
+    buttonAt: 'top-right',
+  }
+);
 const onEdit = ref(false);
 const hideMenu = ref(false);
 window.addEventListener('hideMenu', () => {
@@ -57,8 +64,7 @@ textarea {
 }
 .menu {
   position: absolute;
-  bottom: 100%;
-  right: 0;
+
   border: var(--font-color) solid 0.1rem;
   transition: 0.3s;
   padding: 0.4rem;
@@ -72,6 +78,13 @@ textarea {
   &.hide-menu {
     opacity: 0;
     transition: 0;
+  }
+  &.at-top-right {
+    bottom: 100%;
+    right: 0;
+  }
+  &.at-right {
+    left: 100%;
   }
 }
 </style>

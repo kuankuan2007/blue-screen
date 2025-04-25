@@ -84,7 +84,7 @@
                         if (isNaN(n)) {
                           throw new Error();
                         } else {
-                          const va = choiceValue[i]().object()
+                          const va = choiceValue[i]().object();
                           va[name] = n;
                           const co = Color(va);
                           hsv.h = co.hue();
@@ -101,6 +101,18 @@
             </div>
           </div>
         </div>
+        <div class="defined-choices" v-if="definedChoice.length">
+          <button
+            v-for="i of definedChoice"
+            @click="(choiceValue = Color(i.value), refreshPalette())"
+            :style="{
+              '--value': i.value,
+              '--text': getVisibleColor(i.value).hex(),
+            }"
+          >
+            {{ i.name }}
+          </button>
+        </div>
         <div class="buttons">
           <button @click="close">取消</button>
           <button @click="(value = choiceValue.hex()), close()">确定</button>
@@ -111,14 +123,27 @@
 </template>
 <script setup lang="ts">
 import Color from 'color';
-import KIcon from './icon.vue';
-import { ref, watchEffect, reactive, onMounted } from 'vue';
+import KIcon from './icon.vue';import { getVisibleColor } from '@/scripts/uitl'
+
 const honDrag = ref(false);
 const slonDrag = ref(false);
 const hColor = ref<HTMLDivElement>();
+
 declare class EyeDropper {
   open(): Promise<{ sRGBHex: string }>;
 }
+type DefinedChoice = {
+  name: string;
+  value: string;
+};
+const props = withDefaults(
+  defineProps<{
+    definedChoice?: DefinedChoice[];
+  }>(),
+  {
+    definedChoice: () => [] as DefinedChoice[],
+  }
+);
 const dropper = typeof EyeDropper ? new EyeDropper() : null;
 function dropperColor() {
   if (dropper) {
@@ -149,7 +174,7 @@ window.addEventListener('mousemove', (e) => {
 });
 const value = defineModel({
   type: String,
-  default: '',
+  required: true,
 });
 function rangeIn(min: number, value: number, max: number) {
   return Math.min(Math.max(min, value), max);
@@ -204,6 +229,11 @@ const hsv = reactive({
   s: choiceValue.value.saturationv(),
   v: choiceValue.value.value(),
 });
+function refreshPalette() {
+  hsv.h = choiceValue.value.hue();
+  hsv.s = choiceValue.value.saturationv();
+  hsv.v = choiceValue.value.value();
+}
 watchEffect(() => {
   const va = Color(value.value);
   choiceValue.value = va;
@@ -391,6 +421,25 @@ dialog {
     &:hover {
       background-color: #000;
       color: white;
+    }
+  }
+}
+.defined-choices {
+  display: flex;
+  column-gap: 1em;
+  flex-wrap: wrap;
+  button {
+    display: block;
+    padding: 0.5em 1em;
+    border: solid 0.1rem var(--value);
+    outline: none;
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: var(--value);
+    color: var(--text);
+    &:hover {
+      background-color: var(--text);
+      color: var(--value);
     }
   }
 }
