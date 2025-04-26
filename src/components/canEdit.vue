@@ -45,7 +45,7 @@ textarea {
   position: absolute;
   inset: 0;
   resize: none;
-  border: var(--font-color) solid 0.2rem;
+  border: var(--font-color) solid 0.1em;
   outline: none;
   background-color: var(--bg);
   font-size: 0.8em;
@@ -65,9 +65,9 @@ textarea {
 .menu {
   position: absolute;
 
-  border: var(--font-color) solid 0.1rem;
+  border: var(--font-color) solid 0.1em;
   transition: 0.3s;
-  padding: 0.4rem;
+  padding: 0.5em;
   cursor: pointer;
   &:hover {
     background-color: var(--font-color);

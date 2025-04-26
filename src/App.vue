@@ -25,8 +25,9 @@ import { RouterView } from 'vue-router';
 import Color from 'color';
 import KMenu from './components/menu.vue';
 import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
-import { getVisibleColor } from './scripts/uitl';
+import { getVisibleColor ,copyText} from './scripts/uitl';
 import { router } from './router';
+import { showInfo } from '@/scripts/info';
 
 const bgColor = ref('#0177d7');
 const fontColor = ref('#ffffff');
@@ -90,7 +91,8 @@ function copyLinks() {
     // @ts-ignore
     compressToEncodedURIComponent(JSON.stringify(window.pageData || {}))
   );
-  navigator.clipboard.writeText(target.href);
+  copyText(target.href);
+  showInfo('The link has been copied to the clipboard.');
 }
 </script>
 <style scoped lang="scss">

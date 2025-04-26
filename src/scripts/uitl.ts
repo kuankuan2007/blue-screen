@@ -21,3 +21,16 @@ export function decodePageData(pageData: object, data?: string) {
     }
   }
 }
+export const copyText = (() => {
+  if (navigator.clipboard) {
+    return (text: string) => navigator.clipboard.writeText(text);
+  }
+  return (text: string) => {
+    const ele = document.createElement('input');
+    ele.value = text;
+    document.body.appendChild(ele);
+    ele.select();
+    document.execCommand('copy');
+    document.body.removeChild(ele);
+  };
+})();

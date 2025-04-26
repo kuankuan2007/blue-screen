@@ -202,7 +202,7 @@ watchEffect(() => {
   top: 0;
   right: 0;
   z-index: 999;
-  font-size: 2vmin;
+  font-size: min(2.4vmin, 2.2vw, 2.6vh);
   display: flex;
   flex-direction: row-reverse;
   justify-content: start;
@@ -243,7 +243,7 @@ watchEffect(() => {
     flex-wrap: wrap;
 
     & > a {
-      border: 0.1rem solid var(--bg);
+      border: 0.1em solid var(--bg);
       padding: 0.3em 1em;
       text-decoration: none;
       color: var(--bg);
@@ -262,8 +262,6 @@ watchEffect(() => {
 }
 .menu {
   position: relative;
-  top: 0;
-  right: 0;
   transition: 0.3s;
   width: max-content;
   background-color: var(--font-color);
@@ -277,9 +275,9 @@ watchEffect(() => {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 1rem;
+  padding: 0.5em;
   cursor: pointer;
-  border: 0.1rem solid transparent;
+  border: 0.1em solid transparent;
   transition: 0.3s;
   opacity: 1;
   font-size: 1.5em;
@@ -299,15 +297,14 @@ ul {
   flex-direction: column;
   justify-content: start;
   align-items: stretch;
-  padding: 0.5rem;
   & > li {
     display: flex;
     align-items: center;
-    margin: 0.5rem 0;
-    column-gap: 1rem;
+    margin: 0.2em 0;
+    column-gap: 0.8em;
     font-size: 1.2em;
-    border: 0.1rem transparent solid;
-    padding: 0.5rem;
+    border: 0.1em transparent solid;
+    padding: 0.5em 1em;
     cursor: pointer;
     transition: 0.3s;
     height: calc-size(auto, size);

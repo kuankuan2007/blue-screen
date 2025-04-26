@@ -28,7 +28,7 @@ const value = defineModel({ required: true, type: Boolean });
   inset: 0;
   z-index: 1;
   background-color: var(--font-color);
-  border: solid 0.15rem var(--bg);
+  border: solid 0.15em var(--bg);
   border-radius: 0.2em;
   box-sizing: border-box;
   font-size: 0.9em;

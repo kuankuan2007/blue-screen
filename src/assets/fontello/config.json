@@ -7,13 +7,21 @@
   "ascent": 850,
   "glyphs": [
     {
-      "uid": "b90d80c250a9bbdd6cd3fe00e6351710",
+      "uid": "98405accbbd635bb6d5684fa4dd358c0",
       "css": "check",
       "code": 59392,
-      "src": "iconic"
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M352 860L18 527 176 367 352 541 752 140 911 300Z",
+        "width": 928
+      },
+      "search": [
+        "check"
+      ]
     },
     {
-      "uid": "c522bfb00ea8d80d72709d5eea0e05ef",
+      "uid": "5aefdf47f572c1ec4501db4f1df5d0c1",
       "css": "edit",
       "code": 59393,
       "src": "custom_icons",
@@ -27,7 +35,7 @@
       ]
     },
     {
-      "uid": "c2d9fa76d168e63e61fca749c3880d18",
+      "uid": "c2f11303fa167084c9f6e4a2d0401b8d",
       "css": "save",
       "code": 59394,
       "src": "custom_icons",
@@ -41,7 +49,7 @@
       ]
     },
     {
-      "uid": "641210eafe624fca36be0353d9b9b474",
+      "uid": "d39090311f6210b1b0a02cf663d89070",
       "css": "close",
       "code": 59395,
       "src": "custom_icons",
@@ -55,7 +63,7 @@
       ]
     },
     {
-      "uid": "688fa0d7d3b44d5b98527963e6b88ae2",
+      "uid": "44ea6e2111dae7fa1d1115be4e6b55e5",
       "css": "menu",
       "code": 59396,
       "src": "custom_icons",
@@ -69,7 +77,7 @@
       ]
     },
     {
-      "uid": "967bfcfaec22c23ab922e492afa1274e",
+      "uid": "46b47e95f406df6e8ba052cf12c256b2",
       "css": "eye-off",
       "code": 59397,
       "src": "custom_icons",
@@ -83,7 +91,7 @@
       ]
     },
     {
-      "uid": "0de16bbd226be7654f953d7c3a569ba0",
+      "uid": "0175da427106543d101afb388b10fc3f",
       "css": "eye",
       "code": 59398,
       "src": "custom_icons",
@@ -97,7 +105,7 @@
       ]
     },
     {
-      "uid": "c2a7c504a71e62ec1c1e8d40f3858b10",
+      "uid": "ca577c469e2fbe41f23e392e963dd08f",
       "css": "scissors",
       "code": 59399,
       "src": "custom_icons",
@@ -111,7 +119,7 @@
       ]
     },
     {
-      "uid": "252a58d290b6951d6d4aa502d3d5e0e5",
+      "uid": "27e47a0081fe1a9c356a0fd5ab97960c",
       "css": "fontcolor",
       "code": 59401,
       "src": "custom_icons",
@@ -125,21 +133,7 @@
       ]
     },
     {
-      "uid": "0c03280a449d047a8eedd0932601f921",
-      "css": "background-color",
-      "code": 59402,
-      "src": "custom_icons",
-      "selected": true,
-      "svg": {
-        "path": "M846 0H154C69 0 0 69 0 154V846C0 931 69 1000 154 1000H846C931 1000 1000 931 1000 846V154C1000 69 931 0 846 0ZM702 365H565V792H425V365H288V243H702V365Z",
-        "width": 1000
-      },
-      "search": [
-        "background-color"
-      ]
-    },
-    {
-      "uid": "731f2d27e7bdd9711d97c49445c981ea",
+      "uid": "226a20a3f3207248877af21d4a4cd933",
       "css": "share",
       "code": 61920,
       "src": "custom_icons",
@@ -153,18 +147,42 @@
       ]
     },
     {
-      "uid": "2946eaca1a0fd92830075cd56022f239",
+      "uid": "88e6faa0f633ee23667f815689e82af3",
       "css": "eyedropper",
       "code": 61947,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "33a575e0f8ef0db8af84a2212c29ae38",
+      "css": "background-color",
+      "code": 59402,
       "src": "custom_icons",
-      "selected": false,
+      "selected": true,
       "svg": {
-        "path": "M948 52Q1000 105 1000 179T948 305L822 429 880 487Q886 493 886 500T880 513L763 630Q757 636 750 636T737 630L679 571 342 908Q321 929 292 929H179L36 1000 0 964 71 821V708Q71 679 92 658L429 321 370 263Q364 257 364 250T370 237L487 120Q493 114 500 114T513 120L571 178 695 52Q747 0 821 0T948 52ZM286 821L607 500 500 393 179 714V821H286Z",
+        "path": "M846 0H154C69 0 0 69 0 154V846C0 931 69 1000 154 1000H846C931 1000 1000 931 1000 846V154C1000 69 931 0 846 0ZM702 365H565V792H425V365H288V243H702V365Z",
         "width": 1000
       },
       "search": [
-        "eyedropper"
+        "background-color"
       ]
+    },
+    {
+      "uid": "e82cedfa1d5f15b00c5a81c9bd731ea2",
+      "css": "info",
+      "code": 59400,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "b035c28eba2b35c6ffe92aee8b0df507",
+      "css": "warn",
+      "code": 59403,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "0f4cae16f34ae243a6144c18a003f2d8",
+      "css": "error",
+      "code": 59404,
+      "src": "fontawesome"
     }
   ]
 }
