@@ -17,3 +17,9 @@ html {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'fixedsys';
+  src: url('./fixedsys/font/Fixedsys.woff2') format('woff2'),
+    url('./fixedsys/font/Fixedsys.woff') format('woff'),
+    url('./fixedsys/font/Fixedsys.ttf') format('truetype');
+}
