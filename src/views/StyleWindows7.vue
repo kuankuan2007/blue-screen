@@ -68,7 +68,6 @@ onMounted(() => {
   }
   &:deep(*){
     font-family: 'fixedsys', "Microsoft YaHei", sans-serif;
-
   }
 }
 </style>

@@ -12,7 +12,7 @@ defineProps({
 </script>
 <style scoped lang="scss">
 @use '../assets/fontello/fontello.scss';
-* {
+:root div.icon {
   @include fontello.fontello;
   user-select: none;
   display: block;
