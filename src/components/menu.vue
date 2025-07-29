@@ -67,20 +67,7 @@
   <k-color-set-dialog
     v-model="bgColor"
     ref="bgColorSetDialog"
-    :defined-choice="[
-      {
-        name: 'Windows 古早蓝色',
-        value: '#0028D2',
-      },
-      {
-        name: 'Windows 默认蓝色',
-        value: '#0177D7',
-      },
-      {
-        name: 'Windows Insider',
-        value: '#246F24',
-      },
-    ]"
+    :defined-choice="Object.values(colors)"
   />
   <k-color-set-dialog
     v-model="fontColor"
@@ -102,7 +89,7 @@ import Color from 'color';
 import { getVisibleColor } from '@/scripts/uitl';
 import KCheckBox from './checkBox.vue';
 import { RouterLink } from 'vue-router';
-
+import colors from '@/scripts/colors';
 import { routes } from '@/router';
 defineEmits(['copy-link']);
 

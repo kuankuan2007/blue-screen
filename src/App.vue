@@ -36,6 +36,9 @@ const pageDataFromUrl = ref('');
 
 router.afterEach((to, from) => {
   decodeUrl();
+  if (to.meta?.bgColor) {
+    bgColor.value = to.meta.bgColor as string;
+  }
 });
 
 function decodeUrl() {
