@@ -8,8 +8,8 @@
       <hr />
       <div class="content">{{ content }}</div>
       <div class="button-box">
-        <button v-for="i of buttons" @click="(close(), emit('close', i))">
-          {{ i }}
+        <button v-for="i of buttons" @click="(close(), emit('close', i.id))">
+          {{ i.content }}
         </button>
       </div>
     </div>
@@ -18,13 +18,15 @@
 <script setup lang="ts">
 import KDialog from './dialog.vue';
 import KIcon from './icon.vue';
+import { i18n } from '@/i18n';
 const dialog = useTemplateRef('dialog');
+
 const props = withDefaults(
   defineProps<{
     canCancel?: boolean;
     icon?: string;
     title?: string;
-    buttons?: string[];
+    buttons?: { content: string; id: string }[];
     content: string;
   }>(),
   {
@@ -32,7 +34,12 @@ const props = withDefaults(
     icon: 'info',
     title: 'Information',
     content: '',
-    buttons: () => ['OK'],
+    buttons: () => [
+      {
+        id: 'OK',
+        content: i18n.global.t('button.ok'),
+      },
+    ],
   }
 );
 
@@ -77,6 +84,7 @@ onMounted(() => {
     font-size: 1em;
     display: flex;
     justify-content: flex-end;
+    column-gap: 1em;
     button {
       display: block;
       padding: 0.3em 0.6em;

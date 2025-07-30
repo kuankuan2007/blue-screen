@@ -10,11 +10,15 @@
           <ul>
             <li @click="foldMenu = !foldMenu">
               <p class="icon"><k-icon id="close" /></p>
-              <p class="text">收起菜单</p>
+              <p class="text">{{ $t('menu.collapseMenu') }}</p>
+            </li>
+            <li @click="languageDialog?.open()">
+              <p class="icon"><k-icon id="language" /></p>
+              <p class="text">Language</p>
             </li>
             <li @click="((hideMenu = true), (foldMenu = true))">
               <p class="icon"><k-icon id="eye-off" /></p>
-              <p class="text">隐藏多余项</p>
+              <p class="text">{{ $t('menu.hideUnnecessaries') }}</p>
             </li>
             <li
               @click="screenCapture"
@@ -23,19 +27,19 @@
               }"
             >
               <p class="icon"><k-icon id="scissors" /></p>
-              <p class="text">截图</p>
+              <p class="text">{{ $t('menu.screenshots') }}</p>
             </li>
             <li @click="$emit('copy-link')">
               <p class="icon"><k-icon id="share" /></p>
-              <p class="text">分享带有页面内容的链接</p>
+              <p class="text">{{ $t('menu.shareLink') }}</p>
             </li>
             <li @click="bgColorSetDialog?.open()">
               <p class="icon"><k-icon id="background-color" /></p>
-              <p class="text">编辑背景色</p>
+              <p class="text">{{ $t('menu.editBgColor') }}</p>
             </li>
             <li @click="autoFontColor = !autoFontColor">
               <k-check-box v-model="autoFontColor" />
-              <p class="text">自动前景色</p>
+              <p class="text">{{ $t('menu.autoFgColor') }}</p>
             </li>
             <li
               @click="fontColorSetDialog?.open()"
@@ -44,7 +48,7 @@
               }"
             >
               <p class="icon"><k-icon id="fontcolor" /></p>
-              <p class="text">编辑前景色</p>
+              <p class="text">{{ $t('menu.editFgColor') }}</p>
             </li>
           </ul>
         </div>
@@ -88,11 +92,12 @@
       },
     ]"
   />
+  <k-language-dialog ref="languageDialog" />
 </template>
 <script setup lang="ts">
 import KIcon from './icon.vue';
 import KColorSetDialog from './colorSetDialog.vue';
-import Color from 'color';
+import KLanguageDialog from './languageDialog.vue';
 import { getVisibleColor } from '@/scripts/uitl';
 import KCheckBox from './checkBox.vue';
 import { RouterLink } from 'vue-router';
@@ -166,6 +171,7 @@ function screenCapture() {
 
 const bgColorSetDialog = useTemplateRef('bgColorSetDialog');
 const fontColorSetDialog = useTemplateRef('fontColorSetDialog');
+const languageDialog = useTemplateRef('languageDialog');
 const bgColor = defineModel('bgColor', {
   type: String,
   required: true,
@@ -228,7 +234,6 @@ watchEffect(() => {
   transition: 0.3s;
   flex: 1 1 0;
   font-size: 0.8em;
-  max-height: 50vh;
   overflow-y: auto;
   div.style-list {
     padding: 0.5em;

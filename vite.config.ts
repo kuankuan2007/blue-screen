@@ -9,7 +9,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import postcssPresetEnv from 'postcss-preset-env';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
-
+import VitePluginKI18nConfigLoad from './vite-plugin/ki18nConfigLoad';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,6 +27,11 @@ export default defineConfig({
       emitFile: false,
       filename: './temp/test.html',
       open: true,
+    }),
+    VitePluginKI18nConfigLoad({
+      messages: {
+        main: './src/i18n/main.json',
+      },
     }),
   ],
   css: {

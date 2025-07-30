@@ -1,8 +1,9 @@
 import KInfoDialog from '@/components/infoDialog.vue';
+import { i18n } from '@/i18n';
 
 export function showInfoDialog(
   content: string,
-  title: string = 'Information',
+  title: string = i18n.global.t('message.info'),
   icon: string = 'info',
   canCancel: boolean = true
 ) {
@@ -23,6 +24,6 @@ export function showInfoDialog(
     app.mount(ele);
   });
 }
-export function showInfo(content: string, title: string = 'Information') {
+export function showInfo(content: string, title?: string) {
   showInfoDialog(content, title, 'info');
 }

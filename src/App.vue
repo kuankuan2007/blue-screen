@@ -28,11 +28,13 @@ import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from
 import { getVisibleColor ,copyText} from './scripts/uitl';
 import { router } from './router';
 import { showInfo } from '@/scripts/info';
+import { useI18n } from 'vue-i18n';
 
 const bgColor = ref('#0177d7');
 const fontColor = ref('#ffffff');
 const autoFontColor = ref(true);
 const pageDataFromUrl = ref('');
+const { t } = useI18n();
 
 router.afterEach((to, from) => {
   decodeUrl();
@@ -95,7 +97,7 @@ function copyLinks() {
     compressToEncodedURIComponent(JSON.stringify(window.pageData || {}))
   );
   copyText(target.href);
-  showInfo('The link has been copied to the clipboard.');
+  showInfo(t('message.linkCopied'));
 }
 </script>
 <style scoped lang="scss">

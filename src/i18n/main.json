@@ -1,0 +1,56 @@
+{
+  "menu": {
+    "collapseMenu": {
+      "en-us": "Collapse Menu",
+      "zh-cn": "收起菜单"
+    },
+    "hideUnnecessaries": {
+      "en-us": "Hide Unnecessaries",
+      "zh-cn": "隐藏多余项"
+    },
+    "screenshots": {
+      "en-us": "Take a Screenshot",
+      "zh-cn": "截图"
+    },
+    "shareLink": {
+      "en-us": "Share the Links with Data",
+      "zh-cn": "分享带有页面内容的链接"
+    },
+    "editBgColor": {
+      "en-us": "Edit the Background Color",
+      "zh-cn": "编辑背景色"
+    },
+    "autoFgColor": {
+      "en-us": "Automatic Foreground Color",
+      "zh-cn": "自动前景色"
+    },
+    "editFgColor": {
+      "en-us": "Edit the Foreground Color",
+      "zh-cn": "编辑前景色"
+    }
+  },
+  "button": {
+    "ok": {
+      "en-us": "OK",
+      "zh-cn": "确定"
+    },
+    "confirm": {
+      "en-us": "Confirm",
+      "zh-cn": "确认"
+    },
+    "cancel": {
+      "en-us": "Cancel",
+      "zh-cn": "取消"
+    }
+  },
+  "message": {
+    "info": {
+      "en-us": "Information",
+      "zh-cn": "信息"
+    },
+    "linkCopied": {
+      "en-us": "The link has been copied to the clipboard.",
+      "zh-cn": "链接已复制到剪切板"
+    }
+  }
+}

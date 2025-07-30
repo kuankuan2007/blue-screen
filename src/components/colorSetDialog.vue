@@ -133,8 +133,10 @@
         </button>
       </div>
       <div class="buttons">
-        <button @click="dialog?.cancel()">取消</button>
-        <button @click="((value = choiceValue.hex()), dialog?.close())">确定</button>
+        <button @click="dialog?.cancel()">{{ $t('button.cancel') }}</button>
+        <button @click="((value = choiceValue.hex()), dialog?.close())">
+          {{ $t('button.confirm') }}
+        </button>
       </div>
     </div>
   </k-dialog>
