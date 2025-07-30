@@ -12,11 +12,16 @@
               <p class="icon"><k-icon id="close" /></p>
               <p class="text">收起菜单</p>
             </li>
-            <li @click="(hideMenu = true), (foldMenu = true)">
+            <li @click="((hideMenu = true), (foldMenu = true))">
               <p class="icon"><k-icon id="eye-off" /></p>
               <p class="text">隐藏多余项</p>
             </li>
-            <li @click="screenCapture">
+            <li
+              @click="screenCapture"
+              :class="{
+                hide: !canScreenCapture,
+              }"
+            >
               <p class="icon"><k-icon id="scissors" /></p>
               <p class="text">截图</p>
             </li>
@@ -84,7 +89,9 @@
     ]"
   />
 </template>
-<script setup lang="ts">import KIcon from './icon.vue';import KColorSetDialog from './colorSetDialog.vue';
+<script setup lang="ts">
+import KIcon from './icon.vue';
+import KColorSetDialog from './colorSetDialog.vue';
 import Color from 'color';
 import { getVisibleColor } from '@/scripts/uitl';
 import KCheckBox from './checkBox.vue';
@@ -107,6 +114,7 @@ const autoFontColor = defineModel('autoFontColor', {
   default: true,
 });
 
+const canScreenCapture = ref(!!navigator?.mediaDevices?.getDisplayMedia);
 function screenCapture() {
   hideMenu.value = true;
   foldMenu.value = true;
