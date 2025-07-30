@@ -52,5 +52,27 @@
       "en-us": "The link has been copied to the clipboard.",
       "zh-cn": "链接已复制到剪切板"
     }
+  },
+  "color": {
+    "windowsOld": {
+      "zh-cn": "Windows 古早蓝色",
+      "en-us": "Windows Classic Blue"
+    },
+    "windowsDefault": {
+      "zh-cn": "Windows 默认蓝色",
+      "en-us": "Windows Default Blue"
+    },
+    "windowsInsider": {
+      "zh-cn": "Windows Insider 绿色",
+      "en-us": "Windows Insider Green"
+    },
+    "black": {
+      "zh-cn": "黑色",
+      "en-us": "Black"
+    },
+    "white": {
+      "zh-cn": "白色",
+      "en-us": "White"
+    }
   }
 }

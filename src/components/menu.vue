@@ -83,11 +83,11 @@
     ref="fontColorSetDialog"
     :defined-choice="[
       {
-        name: '白色',
+        name: 'color.white',
         value: '#ffffff',
       },
       {
-        name: '黑色',
+        name: 'color.black',
         value: '#000000',
       },
     ]"

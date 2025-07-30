@@ -1,14 +1,14 @@
 const colors = {
   windowsNow: {
-    name: 'Windows 默认蓝色',
+    name: 'color.windowsDefault',
     value: '#0177D7',
   },
   windowsInsider: {
-    name: 'Windows Insider',
+    name: 'color.windowsInsider',
     value: '#246F24',
   },
   windowsOld: {
-    name: 'Windows 古早蓝色',
+    name: 'color.windowsOld',
     value: '#0028D2',
   },
 };

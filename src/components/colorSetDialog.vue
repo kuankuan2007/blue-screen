@@ -129,7 +129,7 @@
             '--text': getVisibleColor(i.value).hex(),
           }"
         >
-          {{ i.name }}
+          {{ $t(i.name )}}
         </button>
       </div>
       <div class="buttons">
