@@ -19,7 +19,7 @@ export default defineConfig({
     Inspect(),
     autoImport({
       imports: ['vue', 'vue-router'],
-      dts: 'src/auto-imports.d.ts',
+      dts: 'src/types/auto-imports.d.ts',
     }),
     visualizer({
       gzipSize: true,

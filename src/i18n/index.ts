@@ -18,7 +18,7 @@ export const languageList = ['_auto', ...langs].map((i) => ({
 const LOCALSTORAGE_KEY = '_vue_i18n_main_locale';
 function getBrowserLanguage() {
   const languages = (navigator?.languages || []).map((i) => i.toLowerCase());
-  const _langsOnly = langs.map((i) => i.split('-')[0]);
+  const _langsOnly = langs.map((i: string) => i.split('-')[0]);
   for (const i of languages) {
     if (langs.includes(i)) {
       return i;
@@ -47,16 +47,15 @@ export const language = computed({
   },
 });
 watch(language, (value) => {
-  i18n.global.locale.value = value;
+  (i18n.global.locale as unknown as Ref<string>).value = value;
 });
 
 export const i18n = createI18n({
   legacy: false,
   locale: language.value,
   fallbackLocale: 'en-us',
-  messages,
+  messages: messages as any, // eslint-disable-line
 });
-console.log(messages)
 window.addEventListener('languagechange', () => {
   browserLanguage.value = getBrowserLanguage();
 });
