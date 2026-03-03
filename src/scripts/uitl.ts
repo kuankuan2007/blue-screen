@@ -1,6 +1,6 @@
-import Color from 'color';
+import Color,{type ColorInstance} from 'color';
 
-export function getVisibleColor(bgColor: Color | string) {
+export function getVisibleColor(bgColor: ColorInstance | string) {
   if (typeof bgColor === 'string') {
     bgColor = Color(bgColor);
   }
